@@ -1,6 +1,6 @@
 ﻿namespace ISAS_Project.Models
 {
-    public class Declaration
+    public class Statement
     {
         public int Id { get; set; }
         public DateTime TimeOfReceipt { get; set; }

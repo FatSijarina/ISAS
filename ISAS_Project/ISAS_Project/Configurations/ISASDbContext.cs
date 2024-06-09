@@ -10,7 +10,7 @@ namespace ISAS_Project.Configurations
 
         }
 
-        public DbSet<Declaration> Declarations { get; set; } = null!;
+        public DbSet<Statement> Declarations { get; set; } = null!;
         public DbSet<BiologicalTrace> BiologicalTraces { get; set; } = null!;
         public DbSet<Person> Persons { get; set; } = null!;
         public DbSet<Victim> Victims { get; set; } = null!;

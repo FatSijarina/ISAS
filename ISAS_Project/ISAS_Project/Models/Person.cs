@@ -12,7 +12,7 @@
         public string MentalState { get; set; } = null!;
         public string Past { get; set; } = null!;
 
-        public List<Declaration>? Declarations { get; set; } = null!;
+        public List<Statement>? Declarations { get; set; } = null!;
         public List<BiologicalTrace>? BiologicalTraces { get; set; } = null!;
         public List<Evidence>? Evidences { get; set; } = null!;
     }

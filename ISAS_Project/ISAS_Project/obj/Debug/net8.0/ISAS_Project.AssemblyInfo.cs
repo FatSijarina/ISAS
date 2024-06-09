@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ISAS_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05c8e09f128e8a64f76556a89f3d6720472d875d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+989a7e16543133b2e32403fe3bd2f339a7c673cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("ISAS_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ISAS_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
