@@ -34,7 +34,7 @@ namespace ISAS_Project.Services.Implementation
 
                 var declarations = _context.Declarations.Where(d => d.PersonId == id).ToList();
 
-                //mappedWitness.Declarations = _mapper.Map<List<DeclarationDTO>>(declarations);
+                mappedWitness.Statements = _mapper.Map<List<StatementDTO>>(declarations);
 
                 var biologicalTraces = _context.BiologicalTraces.Where(g => g.PersonId == id).ToList();
 
@@ -51,7 +51,7 @@ namespace ISAS_Project.Services.Implementation
 
             var mappedWitness = _mapper.Map<WitnessDTO>(witness);
             var declarations = _context.Declarations.Where(d => d.PersonId == id).ToList();
-            //mappedWitness.Declarations = _mapper.Map<List<DeclarationDTO>>(declarations);
+            mappedWitness.Statements = _mapper.Map<List<StatementDTO>>(declarations);
             var biologicalTraces = _context.BiologicalTraces.Where(g => g.PersonId == id).ToList();
             mappedWitness.BiologicalTraces = _mapper.Map<List<BiologicalTraceDTO>>(biologicalTraces);
 
@@ -66,13 +66,13 @@ namespace ISAS_Project.Services.Implementation
             return dbWitness.IsSuspected;
         }
 
-        /*public async Task<ActionResult<bool>> IsObserved(int id)
+        public async Task<ActionResult<bool>> IsMonitored(int id)
         {
             var dbWitness = await _context.Witnesses.FindAsync(id);
             if (dbWitness == null)
                 return new NotFoundObjectResult("The witness does not exist!!");
-            return dbWitness.IsObserved;
-        }*/
+            return dbWitness.IsMonitored;
+        }
 
         public async Task<ActionResult> AddWitness(WitnessDTO witnessDTO)
         {
@@ -101,11 +101,21 @@ namespace ISAS_Project.Services.Implementation
             dbWitness.MentalState = updateWitnessDTO.MentalState ?? dbWitness.MentalState;
             dbWitness.Past = updateWitnessDTO.Past ?? dbWitness.Past;
             dbWitness.RelationshipWithVictim = updateWitnessDTO.RelationshipWithVictim ?? dbWitness.RelationshipWithVictim;
-            //dbWitness.IsObserved = updateWitnessDTO.IsObserved ?? dbWitness.IsObserved;
+            dbWitness.IsMonitored = updateWitnessDTO.IsMonitored ?? dbWitness.IsMonitored;
             dbWitness.IsSuspected = updateWitnessDTO.IsSuspected ?? dbWitness.IsSuspected;
             await _context.SaveChangesAsync();
 
             return new OkObjectResult("The witness was successfully updated!");
+        }
+
+        public async Task<ActionResult<string>> GetInfo(int id)
+        {
+            var dbWitness = await _context.Witnesses.FindAsync(id);
+            return dbWitness == null
+                ? "The witness does not exist!!"
+                : $"Witness: Name -> {dbWitness.Name}, Profession -> {dbWitness.Profession}, Residence -> {dbWitness.Residence}, " +
+                $"\nRelationship with the victim -> {dbWitness.RelationshipWithVictim}, Is under surveillance? " +
+                $"{dbWitness.IsMonitored}, Is suspected? {dbWitness.IsSuspected}.";
         }
     }
 }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ISAS_Project.Services.Interfaces
 {
-    public interface IWitnessService
+    public interface IWitnessService : IGetInfo
     {
         public Task<ActionResult<List<WitnessDTO>>> GetWitnesses();
         public Task<ActionResult> GetWitnessById(int id);
