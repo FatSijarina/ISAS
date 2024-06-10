@@ -1,4 +1,6 @@
 using ISAS_Project.Configurations;
+using ISAS_Project.Services.Implementation;
+using ISAS_Project.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,8 @@ builder.Services.AddDbContext<ISASDbContext>(options =>
 });
 
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
+
+builder.Services.AddTransient<IBiologicalTraceService, BiologicalTraceService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

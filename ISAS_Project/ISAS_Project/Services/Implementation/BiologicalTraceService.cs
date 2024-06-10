@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ISAS_Project.Configurations;
 using ISAS_Project.DTOs;
+using ISAS_Project.Models;
 using ISAS_Project.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,12 @@ namespace ISAS_Project.Services.Implementation
     {
         private readonly ISASDbContext _context;
         private readonly IMapper _mapper;
+
+        public BiologicalTraceService(ISASDbContext context, IMapper mapper)
+        {
+            _context = context;
+            _mapper = mapper;
+        }
 
         public async Task<ActionResult> DeleteBiologicalTrace(int id)
         {
@@ -33,5 +40,15 @@ namespace ISAS_Project.Services.Implementation
 
         public async Task<ActionResult<List<BiologicalTraceDTO>>> GetBiologicalTraces() =>
             _mapper.Map<List<BiologicalTraceDTO>>(await _context.BiologicalTraces.ToListAsync());
+
+        public async Task<ActionResult> AddBiologicalTrace(BiologicalTraceDTO biologicalTraceDTO)
+        {
+            if (biologicalTraceDTO == null)
+                return new BadRequestObjectResult("Biological Trace can not be null!!");
+            var trace = _mapper.Map<BiologicalTrace>(biologicalTraceDTO);
+            await _context.BiologicalTraces.AddAsync(trace);
+            await _context.SaveChangesAsync();
+            return new OkObjectResult("Trace added successfully!!");
+        }
     }
 }
