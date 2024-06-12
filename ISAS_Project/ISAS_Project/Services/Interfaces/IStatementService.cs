@@ -9,6 +9,6 @@ namespace ISAS_Project.Services.Interfaces
         public Task<ActionResult<StatementDTO>> GetDeclarationById(int id);
         public Task<ActionResult<string>> GetDeclarationContent(int id);
         public Task<ActionResult> DeleteDeclaration(int id);
-        //public Task<string> CompareDeclarations(int d1Id, int d2Id);
+        public Task<string> Compare(int d1Id, int d2Id);
     }
 }

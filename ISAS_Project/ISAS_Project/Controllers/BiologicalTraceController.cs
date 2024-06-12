@@ -31,11 +31,5 @@ namespace ISAS_Project.Controllers
         {
             return await _biologicalTrace.DeleteBiologicalTrace(id);
         }
-
-        [HttpPost("Biological_trace")]
-        public async Task<ActionResult> AddBiologicalTrace(BiologicalTraceDTO biologicalTraceDTO)
-        {
-            return await _biologicalTrace.AddBiologicalTrace(biologicalTraceDTO);
-        }
     }
 }

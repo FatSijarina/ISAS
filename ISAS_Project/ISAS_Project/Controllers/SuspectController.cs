@@ -32,11 +32,11 @@ namespace ISAS_Project.Controllers
             return await _service.GetSuspicionAboutSuspect(id);
         }
 
-        /*[HttpGet("info/{id}")]
+        [HttpGet("suspect/info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _service.GetInfo(id);
-        }*/
+        }
 
         [HttpPost("suspect")]
         public async Task<ActionResult> AddSuspect(SuspectDTO suspectDTO)

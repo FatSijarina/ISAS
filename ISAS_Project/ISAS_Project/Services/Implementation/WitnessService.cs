@@ -66,7 +66,7 @@ namespace ISAS_Project.Services.Implementation
             return dbWitness.IsSuspected;
         }
 
-        public async Task<ActionResult<bool>> IsMonitored(int id)
+        public async Task<ActionResult<bool>> IsObserved(int id)
         {
             var dbWitness = await _context.Witnesses.FindAsync(id);
             if (dbWitness == null)
@@ -116,6 +116,58 @@ namespace ISAS_Project.Services.Implementation
                 : $"Witness: Name -> {dbWitness.Name}, Profession -> {dbWitness.Profession}, Residence -> {dbWitness.Residence}, " +
                 $"\nRelationship with the victim -> {dbWitness.RelationshipWithVictim}, Is under surveillance? " +
                 $"{dbWitness.IsMonitored}, Is suspected? {dbWitness.IsSuspected}.";
+        }
+
+        public async Task<ActionResult> SaveAsSuspect(int id)
+        {
+            var d = await GetWitnessById(id);
+            if (d is NotFoundObjectResult)
+                return d;
+
+            WitnessDTO? witness = ((OkObjectResult)d).Value as WitnessDTO;
+            await SetAsSuspect(id);
+            SuspectDTO suspect = ConvertToSuspect(witness);
+            await AddSuspect(suspect);
+            return new OkObjectResult(suspect);
+        }
+
+        private async Task SetAsSuspect(int id)
+        {
+            var dbWitness = await _context.Witnesses.FindAsync(id);
+            if (dbWitness == null)
+                return;
+            dbWitness.IsSuspected = true;
+            await _context.SaveChangesAsync();
+        }
+
+        // This method is called by the SaveAsSuspect method to convert a witness to a suspect.
+        private SuspectDTO ConvertToSuspect(WitnessDTO witness)
+        {
+            // Create an object of type SuspectDTO 
+            // and initialize it immediately to have the same data as the witness
+            // except that the Suspicion should be changed later.
+            SuspectDTO suspect = new()
+            {
+                Name = witness.Name,
+                Gender = witness.Gender,
+                Profession = witness.Profession,
+                Status = witness.Status,
+                Residence = witness.Residence,
+                MentalState = witness.MentalState,
+                Past = witness.Past,
+                Suspicion = "Suspicion formulated meanwhile..."
+            };
+
+            return suspect;
+        }
+
+        // This method is called by the SaveAsSuspect method to add a suspect.
+        private async Task AddSuspect(SuspectDTO suspect)
+        {
+            // Create an instance of the SuspectService class to use the AddSuspect method
+            // so that the same logic is not implemented in two different classes!
+            SuspectService s = new(_context, _mapper);
+            await s.AddSuspect(suspect);
         }
     }
 }

@@ -5,12 +5,12 @@ namespace ISAS_Project.Services.Interfaces
 {
     public interface IPhysicalEvidenceService
     {
-        public Task<ActionResult<List<EvidenceDTO>>> GetPhysicalEvidences();
+        public Task<ActionResult<List<PhysicalEvidenceDTO>>> GetPhysicalEvidences();
         public Task<ActionResult> GetPhysicalEvidenceById(int id);
-        public Task<ActionResult<List<EvidenceDTO>>> GetForExamination(bool b);
-        public Task<ActionResult<List<EvidenceDTO>>> GetWithBiologicalTraces(bool b);
-        public Task<ActionResult<List<EvidenceDTO>>> GetByRisk(string str);
-        public Task<ActionResult> AddPhysicalEvidence(EvidenceDTO evidenceDTO);
-        public Task<ActionResult> UpdatePhysicalEvidence(int id, UpdateEvidenceDTO updateEvidenceDTO);
+        public Task<ActionResult<List<PhysicalEvidenceDTO>>> GetForExamination(bool b);
+        public Task<ActionResult<List<PhysicalEvidenceDTO>>> GetWithBiologicalTraces(bool b);
+        public Task<ActionResult<List<PhysicalEvidenceDTO>>> GetByRisk(string str);
+        public Task<ActionResult> AddPhysicalEvidence(PhysicalEvidenceDTO evidenceDTO);
+        public Task<ActionResult> UpdatePhysicalEvidence(int id, UpdatePhysicalEvidenceDTO updateEvidenceDTO);
     }
 }

@@ -8,8 +8,10 @@ namespace ISAS_Project.Services.Interfaces
         public Task<ActionResult<List<WitnessDTO>>> GetWitnesses();
         public Task<ActionResult> GetWitnessById(int id);
         public Task<ActionResult<bool>> IsSuspected(int id);
-        //public Task<ActionResult<bool>> IsObserved(int id);
+        public Task<ActionResult<bool>> IsObserved(int id);
         public Task<ActionResult> AddWitness(WitnessDTO witnessDTO);
         public Task<ActionResult> UpdateWitness(int id, UpdateWitnessDTO updateWitnessDTO);
+
+        public Task<ActionResult> SaveAsSuspect(int id);
     }
 }

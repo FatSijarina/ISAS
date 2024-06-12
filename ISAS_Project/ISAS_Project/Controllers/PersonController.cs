@@ -38,17 +38,17 @@ namespace ISAS_Project.Controllers
             return await _involvedParty.UpdateDeclaration(id, updateStatementDTO);
         }
 
-        /*[HttpOptions("compare-declarations")]
+        [HttpOptions("compare-declarations")]
         public async Task<string> Compare(int d1Id, int d2Id)
         {
             return await _involvedParty.Compare(d1Id, d2Id);
-        }*/
+        }
 
-        /*[HttpGet("biological-traces-of-person/{id}")]
+        [HttpGet("biological-traces-of-person/{id}")]
         public async Task<ActionResult<List<BiologicalTraceDTO>>> GetBiologicalTracesOfPerson(int id)
         {
             return await _involvedParty.GetBiologicalTracesOfPerson(id);
-        }*/
+        }
 
         [HttpPost("biological-trace")]
         public async Task<ActionResult> AddBiologicalTrace(BiologicalTraceDTO biologicalTraceDTO)
@@ -56,10 +56,10 @@ namespace ISAS_Project.Controllers
             return await _involvedParty.AddBiologicalTrace(biologicalTraceDTO);
         }
 
-        /*[HttpPut("biological-trace/{id}")]
+        [HttpPut("biological-trace/{id}")]
         public async Task<ActionResult> UpdateBiologicalTrace(int id, UpdateBiologicalTraceDTO updateBiologicalTraceDTO)
         {
             return await _involvedParty.UpdateBiologicalTrace(id, updateBiologicalTraceDTO);
-        }*/
+        }
     }
 }

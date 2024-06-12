@@ -20,10 +20,10 @@ namespace ISAS_Project.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<BiologicalEvidenceDTO>>> GetEvidencesBiologjike() =>
+        public async Task<ActionResult<List<BiologicalEvidenceDTO>>> GetBiologicalEvidences() =>
             _mapper.Map<List<BiologicalEvidenceDTO>>(await _context.BiologicalEvidences.ToListAsync());
 
-        public async Task<ActionResult> GetEvidenceBiologjikeById(int id)
+        public async Task<ActionResult> GetBiologicalEvidenceById(int id)
         {
             var mappedEvidence = _mapper.Map<BiologicalEvidenceDTO>(await _context.BiologicalEvidences.FindAsync(id));
             return mappedEvidence == null
@@ -31,7 +31,7 @@ namespace ISAS_Project.Services.Implementation
                 : new OkObjectResult(mappedEvidence);
         }
 
-        public async Task<ActionResult> AddEvidenceBiologjike(BiologicalEvidenceDTO evidenceDTO)
+        public async Task<ActionResult> AddBiologicalEvidence(BiologicalEvidenceDTO evidenceDTO)
         {
             if (evidenceDTO == null)
                 return new BadRequestObjectResult("The evidence cannot be null!!");
@@ -41,7 +41,7 @@ namespace ISAS_Project.Services.Implementation
             return new OkObjectResult("The evidence was successfully added!");
         }
 
-        public async Task<ActionResult> UpdateEvidenceBiologjike(int id, UpdateBiologicalEvidenceDTO updateEvidenceDTO)
+        public async Task<ActionResult> UpdateBiologicalEvidence(int id, UpdateBiologicalEvidenceDTO updateEvidenceDTO)
         {
             if (updateEvidenceDTO == null)
                 return new BadRequestObjectResult("The evidence cannot be null!!");
@@ -51,7 +51,7 @@ namespace ISAS_Project.Services.Implementation
                 return new NotFoundObjectResult("The evidence does not exist!!");
 
             dbEvidence.Name = updateEvidenceDTO.Name ?? dbEvidence.Name;
-            //dbEvidence.TimeOfExtraction = updateEvidenceDTO.TimeOfExtraction ?? dbEvidence.TimeOfExtraction;
+            dbEvidence.TimeOfExtraction = updateEvidenceDTO.ExtractionTime ?? dbEvidence.TimeOfExtraction;
             dbEvidence.Location = updateEvidenceDTO.Location ?? dbEvidence.Location;
             dbEvidence.Attachment = updateEvidenceDTO.Attachment ?? dbEvidence.Attachment;
             dbEvidence.ExtractionTechnique = updateEvidenceDTO.ExtractionTechnique ?? dbEvidence.ExtractionTechnique;
@@ -66,21 +66,19 @@ namespace ISAS_Project.Services.Implementation
 
         public async Task<ActionResult<List<BiologicalTraceDTO>>> Compare(int evidenceId, int personId)
         {
-            // Retrieve the evidence by evidenceId
             var dbEvidence = _mapper.Map<BiologicalEvidenceDTO>(await _context.BiologicalEvidences.FindAsync(evidenceId));
 
             if (dbEvidence == null)
                 return new NotFoundObjectResult("The evidence does not exist!!");
 
             BiologicalTraceService biologicalTraceService = new(_context, _mapper);
-            // Retrieve the list of traces of a person by personId
-            var result = await biologicalTraceService.GetPersonTraces(personId);
+            var result = await biologicalTraceService.GetPersonBiologicalTraces(personId);
             var objectList = result.Value;
             if (objectList == null)
                 return new NotFoundObjectResult($"No biological traces of person {personId} were found!!");
 
             List<BiologicalTraceDTO> traces = new();
-            // Check if the evidence (dbEvidence) matches any "Type" and "Specification" from the objects in the list (objectList)
+
             foreach (var obj in objectList)
             {
                 if (dbEvidence.Type == obj.Type && dbEvidence.Specification == obj.Specification)

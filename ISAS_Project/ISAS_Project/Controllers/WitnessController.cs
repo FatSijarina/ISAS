@@ -32,17 +32,17 @@ namespace ISAS_Project.Controllers
             return await _witnessService.IsSuspected(id);
         }
 
-        /*[HttpGet("is-observed/{id}")]
+        [HttpGet("is-observed/{id}")]
         public async Task<ActionResult<bool>> IsObserved(int id)
         {
             return await _witnessService.IsObserved(id);
-        }*/
+        }
 
-        /*[HttpGet("info/{id}")]
+        [HttpGet("witness/info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _witnessService.GetInfo(id);
-        }*/
+        }
 
         [HttpPost("witness")]
         public async Task<ActionResult> AddWitness(WitnessDTO witnessDTO)
@@ -56,10 +56,10 @@ namespace ISAS_Project.Controllers
             return await _witnessService.UpdateWitness(id, updateWitnessDTO);
         }
 
-        /*[HttpPatch("save-as-suspected/{id}")]
+        [HttpPatch("save-as-suspected/{id}")]
         public async Task<ActionResult> SaveAsSuspected(int id)
         {
-            return await _witnessService.SaveAsSuspected(id);
-        }*/
+            return await _witnessService.SaveAsSuspect(id);
+        }
     }
 }

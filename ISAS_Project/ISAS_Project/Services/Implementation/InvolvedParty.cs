@@ -59,16 +59,16 @@ namespace ISAS_Project.Services.Implementation
         public async Task<ActionResult> UpdateDeclaration(int id, UpdateStatementDTO updateStatementDTO) =>
             new OkObjectResult(await statementService.UpdateDeclaration(id, updateStatementDTO));
 
-        /*public async Task<string> Compare(int d1Id, int d2Id) =>
-            await statementService.Compare(d1Id, d2Id);*/
+        public async Task<string> Compare(int d1Id, int d2Id) =>
+            await statementService.Compare(d1Id, d2Id);
 
-        /*public async Task<ActionResult<List<BiologicalTraceDTO>>> GetBiologicalTracesOfPerson(int id) =>
-            await biologicalTraceService.GetBiologicalTracesOfPerson(id);*/
+        public async Task<ActionResult<List<BiologicalTraceDTO>>> GetBiologicalTracesOfPerson(int id) =>
+            await biologicalTraceService.GetPersonBiologicalTraces(id);
 
         public async Task<ActionResult> AddBiologicalTrace(BiologicalTraceDTO biologicalTraceDTO) =>
             new OkObjectResult(await biologicalTraceService.AddBiologicalTrace(biologicalTraceDTO));
 
-        /*public async Task<ActionResult> UpdateBiologicalTrace(int id, UpdateBiologicalTraceDTO updateBiologicalTraceDTO) =>
-            new OkObjectResult(await biologicalTraceService.UpdateBiologicalTrace(id, updateBiologicalTraceDTO));*/
+        public async Task<ActionResult> UpdateBiologicalTrace(int id, UpdateBiologicalTraceDTO updateBiologicalTraceDTO) =>
+            new OkObjectResult(await biologicalTraceService.UpdateBiologicalTrace(id, updateBiologicalTraceDTO));
     }
 }

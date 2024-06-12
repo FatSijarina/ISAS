@@ -19,10 +19,10 @@ namespace ISAS_Project.Services.Implementation
             _mapper = mapper;
         }
 
-        public async Task<ActionResult<List<PhysicalEvidenceDTO>>> GetEvidencesFizike() =>
+        public async Task<ActionResult<List<PhysicalEvidenceDTO>>> GetPhysicalEvidences() =>
             _mapper.Map<List<PhysicalEvidenceDTO>>(await _context.PhysicalEvidences.ToListAsync());
 
-        public async Task<ActionResult> GetEvidenceFizikeById(int id)
+        public async Task<ActionResult> GetPhysicalEvidenceById(int id)
         {
             var mappedEvidence = _mapper.Map<PhysicalEvidenceDTO>(await _context.PhysicalEvidences.FindAsync(id));
             return mappedEvidence == null
@@ -44,14 +44,14 @@ namespace ISAS_Project.Services.Implementation
                                 .ToListAsync());
         }
 
-        public async Task<ActionResult<List<PhysicalEvidenceDTO>>> GetByDangerLevel(string str)
+        public async Task<ActionResult<List<PhysicalEvidenceDTO>>> GetByRisk(string str)
         {
             return _mapper.Map<List<PhysicalEvidenceDTO>>(await _context.PhysicalEvidences
                                 .Where(p => p.DangerLevel == str)
                                 .ToListAsync());
         }
 
-        public async Task<ActionResult> AddEvidenceFizike(PhysicalEvidenceDTO evidenceDTO)
+        public async Task<ActionResult> AddPhysicalEvidence(PhysicalEvidenceDTO evidenceDTO)
         {
             if (evidenceDTO == null)
                 return new BadRequestObjectResult("The evidence cannot be null!!");
@@ -62,7 +62,7 @@ namespace ISAS_Project.Services.Implementation
             return new OkObjectResult("The evidence was successfully added!");
         }
 
-        public async Task<ActionResult> UpdateEvidenceFizike(int id, UpdatePhysicalEvidenceDTO updateEvidenceDTO)
+        public async Task<ActionResult> UpdatePhysicalEvidence(int id, UpdatePhysicalEvidenceDTO updateEvidenceDTO)
         {
             if (updateEvidenceDTO == null)
                 return new BadRequestObjectResult("The evidence cannot be null!!");
@@ -72,7 +72,7 @@ namespace ISAS_Project.Services.Implementation
                 return new NotFoundObjectResult("The evidence does not exist!!");
 
             dbEvidence.Name = updateEvidenceDTO.Name ?? dbEvidence.Name;
-            //dbEvidence.TimeOfExtraction = updateEvidenceDTO.TimeOfExtraction ?? dbEvidence.TimeOfExtraction;
+            dbEvidence.TimeOfExtraction = updateEvidenceDTO.ExtractionTime ?? dbEvidence.TimeOfExtraction;
             dbEvidence.Location = updateEvidenceDTO.Location ?? dbEvidence.Location;
             dbEvidence.Attachment = updateEvidenceDTO.Attachment ?? dbEvidence.Attachment;
             dbEvidence.UsedInCrime = updateEvidenceDTO.UsedInCrime ?? dbEvidence.UsedInCrime;

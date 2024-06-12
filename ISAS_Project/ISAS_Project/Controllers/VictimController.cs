@@ -26,11 +26,11 @@ namespace ISAS_Project.Controllers
             return await _victimService.GetVictimById(id);
         }
 
-        /*[HttpGet("info/{id}")]
+        [HttpGet("victim/info/{id}")]
         public async Task<ActionResult<string>> GetInfo(int id)
         {
             return await _victimService.GetInfo(id);
-        }*/
+        }
 
         [HttpPost("victims")]
         public async Task<ActionResult> AddVictim(VictimDTO victimDTO)

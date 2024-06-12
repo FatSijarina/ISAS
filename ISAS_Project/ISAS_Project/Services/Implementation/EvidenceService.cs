@@ -11,7 +11,6 @@ namespace ISAS_Project.Services.Implementation
     {
         private readonly ISASDbContext _context;
         private readonly IMapper _mapper;
-
         public EvidenceService(ISASDbContext context, IMapper mapper)
         {
             _context = context;

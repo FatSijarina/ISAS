@@ -1949,6 +1949,19 @@
           "lib/netcoreapp3.1/Mono.TextTemplating.dll": {}
         }
       },
+      "NBench/2.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/NBench.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/NBench.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "type": "package",
         "compile": {
@@ -6642,6 +6655,19 @@
         "readme.md"
       ]
     },
+    "NBench/2.0.1": {
+      "sha512": "zipYsmXS5YjS1baWr2WyjbSaMV5bCLqQbrQoQSh6XQ/x1x4Aw0HK2aRWspHvkqUxxbaY8BQVceagrzYugN1i9w==",
+      "type": "package",
+      "path": "nbench/2.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/NBench.dll",
+        "lib/netstandard2.0/NBench.xml",
+        "nbench.2.0.1.nupkg.sha512",
+        "nbench.nuspec"
+      ]
+    },
     "Newtonsoft.Json/13.0.3": {
       "sha512": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ==",
       "type": "package",
@@ -8304,6 +8330,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.6",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.6",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.2",
+      "NBench >= 2.0.1",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -8378,6 +8405,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.2, )"
+          },
+          "NBench": {
+            "target": "Package",
+            "version": "[2.0.1, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

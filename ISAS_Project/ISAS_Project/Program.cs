@@ -16,6 +16,14 @@ builder.Services.AddDbContext<ISASDbContext>(options =>
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 builder.Services.AddTransient<IBiologicalTraceService, BiologicalTraceService>();
+builder.Services.AddTransient<IBiologicalEvidence, BiologicalEvidenceService>();
+builder.Services.AddTransient<IEvidenceService, EvidenceService>();
+builder.Services.AddTransient<IInvolvedParty, InvolvedParty>();
+builder.Services.AddTransient<IPhysicalEvidenceService, PhysicalEvidenceService>();
+builder.Services.AddTransient<IStatementService, StatementService>();
+builder.Services.AddTransient<ISuspectService, SuspectService>();
+builder.Services.AddTransient<IVictimService, VictimService>();
+builder.Services.AddTransient<IWitnessService, WitnessService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
