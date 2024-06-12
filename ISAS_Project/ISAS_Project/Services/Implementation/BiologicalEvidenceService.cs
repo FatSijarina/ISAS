@@ -13,15 +13,25 @@ namespace ISAS_Project.Services.Implementation
     {
         private readonly ISASDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<BiologicalEvidenceService> _logger;
 
-        public BiologicalEvidenceService(ISASDbContext context, IMapper mapper)
+        public BiologicalEvidenceService(ISASDbContext context, IMapper mapper, ILogger<BiologicalEvidenceService> logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
-        public async Task<ActionResult<List<BiologicalEvidenceDTO>>> GetBiologicalEvidences() =>
-            _mapper.Map<List<BiologicalEvidenceDTO>>(await _context.BiologicalEvidences.ToListAsync());
+        public async Task<ActionResult<List<BiologicalEvidenceDTO>>> GetBiologicalEvidences()
+        {
+            _logger.LogInformation("Fetching all biological evidences");
+            var evidences = await _context.BiologicalEvidences.ToListAsync();
+            _logger.LogInformation("Fetched {Count} evidences", evidences.Count);
+            return _mapper.Map<List<BiologicalEvidenceDTO>>(evidences);
+        }
+
+/*        public async Task<ActionResult<List<BiologicalEvidenceDTO>>> GetBiologicalEvidences() =>
+            _mapper.Map<List<BiologicalEvidenceDTO>>(await _context.BiologicalEvidences.ToListAsync());*/
 
         public async Task<ActionResult> GetBiologicalEvidenceById(int id)
         {

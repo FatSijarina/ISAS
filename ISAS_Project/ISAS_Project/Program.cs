@@ -25,6 +25,8 @@ builder.Services.AddTransient<ISuspectService, SuspectService>();
 builder.Services.AddTransient<IVictimService, VictimService>();
 builder.Services.AddTransient<IWitnessService, WitnessService>();
 
+//builder.Services.AddApplicationInsightsTelemetry(Configuration["ApplicationInsights:InstrumentationKey"]);
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

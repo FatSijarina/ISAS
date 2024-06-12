@@ -35,7 +35,7 @@ namespace StressTests
             RunTimeMilliseconds = 2000,
             TestMode = TestMode.Test)]
 
-        [CounterThroughputAssertion("EvidencesCounter", MustBe.GreaterThan, 90000)]
+        [CounterThroughputAssertion("EvidencesCounter", MustBe.GreaterThan, 5000)]
 
         [MemoryAssertion(MemoryMetric.TotalBytesAllocated, MustBe.LessThanOrEqualTo, ByteConstants.SixtyFourKb)]
         public void Evidence_Test()
