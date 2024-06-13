@@ -17,14 +17,14 @@
 
     public class UpdatePersonDTO
     {
-        public string? Name { get; set; } = null!;
+        public string? Name { get; set; }
         public char? Gender { get; set; }
-        public string? Profession { get; set; } = null!;
-        public string? Status { get; set; } = null!;
-        public string? Residence { get; set; } = null!;
-        public string? MentalState { get; set; } = null!;
-        public string? Past { get; set; } = null!;
-        // public List<Statement>? Statements { get; set; }
-        // public List<BiologicalTrace>? BiologicalTraces { get; set; }
+        public string? Profession { get; set; }
+        public string? Status { get; set; }
+        public string? Residence { get; set; }
+        public string? MentalState { get; set; }
+        public string? Past { get; set; }
+        public List<StatementDTO>? Statements { get; set; }
+        public List<BiologicalTraceDTO>? BiologicalTraces { get; set; }
     }
 }

@@ -42,12 +42,23 @@ namespace ISAS_Project.Services.Implementation
         }
 
         public async Task<ActionResult> AddBiologicalEvidence(BiologicalEvidenceDTO evidenceDTO)
-        {
+        {/*
             if (evidenceDTO == null)
                 return new BadRequestObjectResult("The evidence cannot be null!!");
             var mappedEvidence = _mapper.Map<BiologicalEvidence>(evidenceDTO);
             await _context.BiologicalEvidences.AddAsync(mappedEvidence);
             await _context.SaveChangesAsync();
+            return new OkObjectResult("The evidence was successfully added!");*/
+            if (evidenceDTO == null)
+            {
+                _logger.LogWarning("Attempted to add null evidence");
+                return new BadRequestObjectResult("The evidence cannot be null!!");
+            }
+
+            var mappedEvidence = _mapper.Map<BiologicalEvidence>(evidenceDTO);
+            await _context.BiologicalEvidences.AddAsync(mappedEvidence);
+            await _context.SaveChangesAsync();
+            _logger.LogInformation("The evidence was successfully added!");
             return new OkObjectResult("The evidence was successfully added!");
         }
 

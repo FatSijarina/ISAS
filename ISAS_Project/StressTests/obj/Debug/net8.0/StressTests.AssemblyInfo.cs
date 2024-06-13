@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StressTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+81a89e782483e4375f63952cfba0b94a5a4ea163")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+261a1083e2f4b96148392e65cd9f3cc32a68d664")]
 [assembly: System.Reflection.AssemblyProductAttribute("StressTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StressTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
