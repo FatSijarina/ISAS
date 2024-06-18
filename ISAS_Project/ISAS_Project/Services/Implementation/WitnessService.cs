@@ -114,8 +114,8 @@ namespace ISAS_Project.Services.Implementation
             return dbWitness == null
                 ? "The witness does not exist!!"
                 : $"Witness: Name -> {dbWitness.Name}, Profession -> {dbWitness.Profession}, Residence -> {dbWitness.Residence}, " +
-                $"\nRelationship with the victim -> {dbWitness.RelationshipWithVictim}, Is under surveillance? " +
-                $"{dbWitness.IsMonitored}, Is suspected? {dbWitness.IsSuspected}.";
+                $"\nRelationship with the victim -> {dbWitness.RelationshipWithVictim}, Is under surveillance?? " +
+                $"{dbWitness.IsMonitored}, Is suspected?? {dbWitness.IsSuspected}!";
         }
 
         public async Task<ActionResult> SaveAsSuspect(int id)
