@@ -1,28 +1,28 @@
-# This workflow will build a .NET project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
-
 name: Tests
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+    - uses: actions/checkout@v2
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '6.x.x'  # Specify the .NET version
+
     - name: Restore dependencies
-      run: dotnet restore C:/Users/Admin/Desktop/FK/MSc/Semestri2/ISAS/ISAS/ISAS_Project/ISAS_Project/ISAS_Project.csproj
+      run: dotnet restore ISAS_Project/ISAS_Project/ISAS_Project.csproj
+
     - name: Build
-      run: dotnet build C:/Users/Admin/Desktop/FK/MSc/Semestri2/ISAS/ISAS/ISAS_Project/ISAS_Project/ISAS_Project.csproj --configuration Release --no-restore
+      run: dotnet build ISAS_Project/ISAS_Project/ISAS_Project.csproj --configuration Release --no-restore
+
     - name: Test
-      run: dotnet test C:/Users/Admin/Desktop/FK/MSc/Semestri2/ISAS/ISAS/ISAS_Project/ISAS_Project/ISAS_Project.csproj --no-build --verbosity normal
+      run: dotnet test ISAS_Project/ISAS_Project/ISAS_Project.csproj --no-build --verbosity normal
+
