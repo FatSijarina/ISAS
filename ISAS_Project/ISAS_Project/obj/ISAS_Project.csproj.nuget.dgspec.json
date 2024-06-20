@@ -45,6 +45,22 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "App.Metrics.AspNetCore": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "App.Metrics.AspNetCore.Endpoints": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "App.Metrics.AspNetCore.Tracking": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "App.Metrics.Formatters.Prometheus": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
             "AutoMapper": {
               "target": "Package",
               "version": "[13.0.1, )"
